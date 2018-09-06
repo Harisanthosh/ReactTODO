@@ -8,7 +8,7 @@ class ToDoSearch extends React.Component {
     this.addItem = this.addItem.bind(this);
   }
   addItem() {
-    console.log("Propse obtained", this.props);
+    console.log("The Props obtained", this.props);
     const val = document.getElementById("todoText").value;
     this.props.dispatch(addListItem(val));
   }
@@ -17,7 +17,7 @@ class ToDoSearch extends React.Component {
       <div>
         <form>
           <input type="text" size="60" id="todoText" /> &nbsp;
-          <input type="button" value="Add TODO" /> <br />
+          <input type="button" value="Add TODO" onClick={this.addItem} /> <br />
           <br />
         </form>
       </div>

@@ -6,20 +6,39 @@ import { toggleItem } from "../actions/toggletodosActions";
 class ToDoDisplayList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      menu: "",
+      todos: []
+    };
     this.toggleList = this.toggleList.bind(this);
   }
   toggleList() {
-    console.log("With props", this.props);
+    console.log("With props id", this.props.id);
     this.props.dispatch(toggleItem(this.props.id));
   }
   render() {
     //don't make presentational components intelligent
-    let itemsJSX = null;
-    itemsJSX = this.props.listItems.map(element => {
-      // return
-      //const complete = element.complete == true? "complete" : "";
+    let itemsJSX = [];
+    console.log("Array of todos are :", this.props.todos);
+    let arrJSX = this.props.todos;
+    /* 
+        <ListItem
+          todo={element[0] && element[0].text}
+          complete={element[0] && element[0].complete}
+          id={element[0] && element.id}
+          onClick={this.toggleList}
+        />
+    */
+    //const complete = element.complete == true? "complete" : "";
+    const itemsArray = arrJSX.map(vet => {
+      console.log(vet);
+      return vet;
+    });
+    itemsJSX = arrJSX.map(element => {
+      console.log("Inside Map element is", element);
       return (
         <ListItem
+          key={element.id}
           todo={element.text}
           complete={element.complete}
           id={element.id}
@@ -27,40 +46,44 @@ class ToDoDisplayList extends React.Component {
         />
       );
     });
+    console.log("Array jsx built is", itemsJSX);
     return (
       <div>
-        <ul>
-          <ListItem todo="Learn React" complete />
-          <ListItem todo="Learn Redux" />
-          <ListItem todo="Learn Webpack" />
-        </ul>
+        <ul>{itemsJSX}</ul>
       </div>
     );
   }
 }
 function mapStateToProps(state) {
-  //tbd
+  //
+  console.log("Subscribed function called", state);
   if (state.menu == "ALL") {
+    console.log(state.todos);
     return {
-      listItems: [state.todos]
+      menu: state.menu,
+      todos: state.todos
     };
   } else if (state.menu == "ACTIVE") {
-    let activeItems = state.todos.map(element => {
-      if (element.complete == false) {
+    let activeItems = state.todos.filter(element => {
+      if (!element.complete) {
         return element;
       }
     });
+    console.log(activeItems);
     return {
-      listItems: activeItems
+      menu: state.menu,
+      todos: activeItems
     };
   } else {
-    let completedItems = state.todos.map(element => {
-      if (element.complete == true) {
+    let completedItems = state.todos.filter(element => {
+      if (element.complete) {
         return element;
       }
     });
+    console.log(completedItems);
     return {
-      listItems: completedItems
+      menu: state.menu,
+      todos: completedItems
     };
   }
 }

@@ -10,7 +10,7 @@ class ListItem extends React.Component {
   crossItem() {
     console.log("Props obtained", this.props);
     //tbd
-    this.props.dispatch(toggleItem(this.props.todo.id));
+    this.props.dispatch(toggleItem(this.props.id));
   }
   render() {
     let liJSX = null;
