@@ -16,3 +16,24 @@ class ToDoDisplayList extends React.Component {
 }
 
 export default ToDoDisplayList;
+
+//Store Creation
+
+const store = {
+  menu: "ALL | ACTIVE | COMPLETED",
+  todos: [
+    {
+      id: 1,
+      text: "Learn React",
+      complete: false
+    }
+  ]
+};
+
+//Actions
+/*
+    {type:"ADD_TODO", text:"Learn React"}
+    {type:"TOGGLE_TODO", id:1}
+    {type:"SWITCH_MENU", menu: "ALL | ACTIVE | COMPLETED"}
+
+*/
