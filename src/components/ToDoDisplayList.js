@@ -1,7 +1,11 @@
 import React from "react";
 import ListItem from "./ListItem";
+import { connect } from "react-redux";
 
 class ToDoDisplayList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div>
@@ -14,8 +18,12 @@ class ToDoDisplayList extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  //tbd
+}
 
-export default ToDoDisplayList;
+const displayListContainer = connect(mapStateToProps)(ToDoDisplayList);
+export default displayListContainer;
 
 //Store Creation
 
