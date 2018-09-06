@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 class ToDoSearch extends React.Component {
   render() {
@@ -14,4 +15,5 @@ class ToDoSearch extends React.Component {
   }
 }
 
-export default ToDoSearch;
+const addContainer = connect()(ToDoSearch);
+export default addContainer;

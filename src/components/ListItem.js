@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 class ListItem extends React.Component {
   constructor(props) {
@@ -15,4 +16,5 @@ class ListItem extends React.Component {
   }
 }
 
-export default ListItem;
+const listContainer = connect()(ListItem);
+export default listContainer;
